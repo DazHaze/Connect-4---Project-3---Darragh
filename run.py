@@ -13,11 +13,13 @@ class Board:
         self.row_count = 6
         self.col_count = 7
         self.board = np.zeros((self.row_count, self.col_count))
+        self.user_row = []
+        self.user_column = []
 
     # Remember to flip board
 
     def display_upsidedown_board(self):
-        print(np.flip(self.board, 0))
+        print(f'\n{np.flip(self.board, 0)}\n')
 
     def display_board(self):
         print(self.board)
@@ -28,7 +30,7 @@ class Board:
     def valid_drop(self):
         global empty_row
         global choice
-        choice = int(input("Please choose a column: \n"))
+        choice = int(input("Please choose a column (0-6): \n"))
         for row in range(self.row_count):
             if self.board[row][choice] == 0:
                 empty_row = row
@@ -36,7 +38,7 @@ class Board:
                 break
             elif row == self.row_count-1:
                 print("Column is full, please choose another.\n")
-                choice = int(input("Please choose a column: \n"))
+                choice = int(input("Please choose a column (0-6): \n"))
                 break
 
     def check_win(self):
@@ -63,16 +65,22 @@ class Board:
                         if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
                             return True
 
+    
+
 
 gameBoard = Board()
 
 playing = True
+initial_message = "***   Welcome to Connect4 written in python!   ***\n***   Try your best to beat the computer!      ***\n***   		Goodluck! :)                   ***\n"
+
 while playing:
+    print(initial_message)
     win = False
     while not win:
         gameBoard.display_upsidedown_board()
         gameBoard.valid_drop()
         if gameBoard.check_win():
+            gameBoard.display_upsidedown_board()
             win = True
             print("You won!")
         else:
