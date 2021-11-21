@@ -13,6 +13,7 @@ class Board:
         self.col_count = 7
         self.board = np.zeros((self.row_count, self.col_count))
 
+
     # Remember to flip board
     def display_board(self):
         print(self.board)
@@ -25,25 +26,42 @@ class Board:
         for row in range(self.row_count):
             if self.board[row][col] == 0:
                 empty_row = row
-                self.update_board(empty_row, col, 8)
+                self.update_board(empty_row, col, 7)
                 print(empty_row)
                 break
             elif row == self.row_count-1:
                 print("Column is full, please choose another.")
                 break
 
+    def check_win_columns(self):
+        for row in range(self.row_count):
+            for col in range(self.col_count):
+                if self.board[row][col] == 7:
+                    if row + 3 < 6:
+                        if self.board[row][col] == self.board[row+1][col] == self.board[row+2][col] == self.board[row+3][col]:
+                            print("Win columns")
+    
+    def check_win_rows(self):
+        for col in range(self.col_count):
+            for row in range(self.row_count):
+                if self.board[row][col] == 7:
+                    if col + 3 < 7:
+                        if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
+                            print("Win rows")
+
+
+
 
 gameBoard = Board()
 
-gameBoard.update_board(0, 4, 7)
-gameBoard.update_board(1, 4, 7)
-gameBoard.update_board(2, 4, 7)
-gameBoard.update_board(3, 4, 7)
-gameBoard.update_board(4, 4, 7)
+gameBoard.update_board(2, 0, 7)
+gameBoard.update_board(2, 1, 7)
+gameBoard.update_board(2, 2, 7)
+gameBoard.update_board(2, 3, 7)
 
-gameBoard.update_board(5, 4, 7)
 
 
 user_choice = int(input("Player 1, Make your Selection(0-6):"))
 gameBoard.valid_drop(user_choice)
 print(gameBoard.display_board())
+gameBoard.check_win_rows()
