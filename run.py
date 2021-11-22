@@ -30,25 +30,39 @@ class Board:
     def update_board(self, row, col, piece):
         self.board[row][col] = piece
 
-    def valid_drop(self):
+    def valid_drop(self, piece):
         global empty_row
-        global choice
-        choice = int(input("Please choose a column (0-6): \n"))
-        for row in range(self.row_count):
-            if self.board[row][choice] == 0:
-                empty_row = row
-                self.update_board(empty_row, choice, 1)
-                break
-            elif row == self.row_count-1:
-                print("Column is full, please choose another.\n")
-                choice = int(input("Please choose a column (0-6): \n"))
-                break
+        if piece == 1:
+            choice = int(input("Please choose a column (0-6): \n"))
+            for row in range(self.row_count):
+                if self.board[row][choice] == 0:
+                    empty_row = row
+                    self.dropping_piece(empty_row, choice, 1)
+                    # self.update_board(empty_row, choice, 1)
+                    break
+
+                elif row == self.row_count-1:
+                    print("Column is full, please choose another.\n")
+                    self.valid_drop(1)
+                    break
+
 
     def dropping_piece(self, row, col, piece):
-        if row < 6:
-            for x in range(row_count):
-                update_board
-
+        int_rows = self.row_count-1
+        if row != int_rows:
+            amount = int_rows - row
+            for x in range(amount):
+                # print(int_rows - x)
+                self.update_board(int_rows-x, col, piece)
+                self.display_upsidedown_board()
+                self.update_board(int_rows-x, col, 0)
+                x += 1
+                sleep(0.4)
+            else:
+                # print(row, row + 1)
+                self.update_board(row + 1, col, 0)
+                self.update_board(row, col, piece)
+                self.display_upsidedown_board()
 
     def check_win(self):
         """
@@ -56,7 +70,6 @@ class Board:
         """
         for row in range(self.row_count):
             for col in range(self.col_count):
-                print(row, col)
                 if self.board[row][col] == 1:
                     if row + 3 < 6:
                         # Check if there is 4 in a row.
@@ -73,16 +86,18 @@ class Board:
                             return True
 
     def computer_choice(self):
+        print("Computer now thinking...")
+        sleep(1.2)
         global empty_row
         global choice
         choice = randrange(self.col_count)
         for row in range(self.row_count):
             if self.board[row][choice] == 0:
                 empty_row = row
-                self.update_board(empty_row, choice, 2)
+                self.dropping_piece(empty_row, choice, 2)
                 break
             elif row == self.row_count-1:
-                choice = randrange(self.col_count)
+                self.computer_choice()
                 break
 
     # for each point that is 2 (computer symbol)
@@ -95,18 +110,21 @@ gameBoard = Board()
 playing = True
 initial_message = "***   Welcome to Connect4 written in python!   ***\n***   Try your best to beat the computer!      ***\n***   		Goodluck! :)                   ***\n"
 
+playing = True
+player = 1
+print(initial_message)
 while playing:
-    print(initial_message)
-    win = False
-    while not win:
-        gameBoard.display_upsidedown_board()
-        gameBoard.valid_drop()
+    gameBoard.display_upsidedown_board()
+    if player == 2:
         gameBoard.computer_choice()
-        if gameBoard.check_win():
-            gameBoard.display_upsidedown_board()
-            win = True
-            print("You won!")
-        else:
-            win = False
+        player = 1
     else:
+        gameBoard.valid_drop(1)
+        player = 2
+
+    if gameBoard.check_win():
+        print("You win!")
         playing = False
+
+
+
