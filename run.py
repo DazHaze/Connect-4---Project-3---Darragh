@@ -3,6 +3,7 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import numpy as np
 import random as rn
+from time import sleep
 from random import randrange
 
 
