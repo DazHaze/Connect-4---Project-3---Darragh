@@ -58,12 +58,12 @@ class Board:
                         # Check if there is 4 in a column.
                         elif self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
                             return True
+                        # Check if there is 4 in a upward right diagonal.
                         elif self.board[row][col] == self.board[row+1][col+1] == self.board[row+2][col+2] == self.board[row+3][col+3]:
                             return True
-
-
-
-
+                        # Check if there is 4 in a upwarward left diagonal.
+                        elif self.board[row][col] == self.board[row+1][col-1] == self.board[row+2][col-2] == self.board[row+3][col-3]:
+                            return True
 
     def computer_choice(self):
         global empty_row
@@ -79,9 +79,7 @@ class Board:
                 break
 
 
-
 gameBoard = Board()
-
 playing = True
 initial_message = "***   Welcome to Connect4 written in python!   ***\n***   Try your best to beat the computer!      ***\n***   		Goodluck! :)                   ***\n"
 
@@ -91,10 +89,7 @@ while playing:
     while not win:
         gameBoard.display_upsidedown_board()
         gameBoard.valid_drop()
-        # gameBoard.computer_choice()
-        gameBoard.board[1][1] = 1
-        gameBoard.board[2][2] = 1
-        gameBoard.board[3][3] = 1
+        gameBoard.computer_choice()
         if gameBoard.check_win():
             gameBoard.display_upsidedown_board()
             win = True
