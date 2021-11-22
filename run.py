@@ -116,7 +116,6 @@ while playing:
 
     if gameBoard.check_win():
         win_message = "*** 		  You win!!!		       ***\n***     Would you like to play again? y/n      ***\n"
-        "
         user_input = input(win_message)
         if user_input == "y":
             gameBoard.board = np.zeros((gameBoard.row_count, gameBoard.col_count))
