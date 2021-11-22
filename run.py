@@ -2,7 +2,6 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import numpy as np
-import random as rn
 from time import sleep
 from random import randrange
 
@@ -45,7 +44,6 @@ class Board:
                     print("Column is full, please choose another.\n")
                     self.valid_drop(1)
                     break
-
 
     def dropping_piece(self, row, col, piece):
         int_rows = self.row_count-1
@@ -100,12 +98,6 @@ class Board:
                 self.computer_choice()
                 break
 
-    # for each point that is 2 (computer symbol)
-        # check if there is another 2 in diag
-            # if not try to place piece in diag
-             # if space is not free loop through with random int to place piece in free row
-
-
 gameBoard = Board()
 playing = True
 initial_message = "***   Welcome to Connect4 written in python!   ***\n***   Try your best to beat the computer!      ***\n***   		Goodluck! :)                   ***\n"
@@ -123,8 +115,10 @@ while playing:
         player = 2
 
     if gameBoard.check_win():
-        print("You win!")
-        playing = False
-
-
-
+        win_message = "*** 		  You win!!!		       ***\n***     Would you like to play again? y/n      ***\n"
+        "
+        user_input = input(win_message)
+        if user_input == "y":
+            gameBoard.board = np.zeros((gameBoard.row_count, gameBoard.col_count))
+        else:
+            playing = False
