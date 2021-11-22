@@ -44,6 +44,12 @@ class Board:
                 choice = int(input("Please choose a column (0-6): \n"))
                 break
 
+    def dropping_piece(self, row, col, piece):
+        if row < 6:
+            for x in range(row_count):
+                update_board
+
+
     def check_win(self):
         """
         Check if there is a win in columns, rows or diagonals.
