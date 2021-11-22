@@ -44,28 +44,26 @@ class Board:
                 break
 
     def check_win(self):
-        # Check win in columns
+        """
+        Check if there is a win in columns, rows or diagonals.
+        """
         for row in range(self.row_count):
             for col in range(self.col_count):
+                print(row, col)
                 if self.board[row][col] == 1:
                     if row + 3 < 6:
+                        # Check if there is 4 in a row.
                         if self.board[row][col] == self.board[row+1][col] == self.board[row+2][col] == self.board[row+3][col]:
                             return True
-        # Check win in rows
-        for col in range(self.col_count):
-            for row in range(self.row_count):
-                if self.board[row][col] == 1:
-                    if col + 3 < 7:
-                        if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
+                        # Check if there is 4 in a column.
+                        elif self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
+                            return True
+                        elif self.board[row][col] == self.board[row+1][col+1] == self.board[row+2][col+2] == self.board[row+3][col+3]:
                             return True
 
-    def check_win_rows(self):
-        for col in range(self.col_count):
-            for row in range(self.row_count):
-                if self.board[row][col] == 1:
-                    if col + 3 < 7:
-                        if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
-                            return True
+
+
+
 
     def computer_choice(self):
         global empty_row
@@ -93,7 +91,10 @@ while playing:
     while not win:
         gameBoard.display_upsidedown_board()
         gameBoard.valid_drop()
-        gameBoard.computer_choice()
+        # gameBoard.computer_choice()
+        gameBoard.board[1][1] = 1
+        gameBoard.board[2][2] = 1
+        gameBoard.board[3][3] = 1
         if gameBoard.check_win():
             gameBoard.display_upsidedown_board()
             win = True
