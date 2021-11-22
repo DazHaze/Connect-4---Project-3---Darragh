@@ -78,6 +78,11 @@ class Board:
                 choice = randrange(self.col_count)
                 break
 
+    # for each point that is 2 (computer symbol)
+        # check if there is another 2 in diag
+            # if not try to place piece in diag
+             # if space is not free loop through with random int to place piece in free row
+
 
 gameBoard = Board()
 playing = True
