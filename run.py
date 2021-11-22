@@ -2,6 +2,8 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import numpy as np
+import random as rn
+from random import randrange
 
 
 class Board:
@@ -34,7 +36,7 @@ class Board:
         for row in range(self.row_count):
             if self.board[row][choice] == 0:
                 empty_row = row
-                self.update_board(empty_row, choice, 7)
+                self.update_board(empty_row, choice, 1)
                 break
             elif row == self.row_count-1:
                 print("Column is full, please choose another.\n")
@@ -45,14 +47,14 @@ class Board:
         # Check win in columns
         for row in range(self.row_count):
             for col in range(self.col_count):
-                if self.board[row][col] == 7:
+                if self.board[row][col] == 1:
                     if row + 3 < 6:
                         if self.board[row][col] == self.board[row+1][col] == self.board[row+2][col] == self.board[row+3][col]:
                             return True
         # Check win in rows
         for col in range(self.col_count):
             for row in range(self.row_count):
-                if self.board[row][col] == 7:
+                if self.board[row][col] == 1:
                     if col + 3 < 7:
                         if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
                             return True
@@ -60,12 +62,24 @@ class Board:
     def check_win_rows(self):
         for col in range(self.col_count):
             for row in range(self.row_count):
-                if self.board[row][col] == 7:
+                if self.board[row][col] == 1:
                     if col + 3 < 7:
                         if self.board[row][col] == self.board[row][col+1] == self.board[row][col+2] == self.board[row][col+3]:
                             return True
 
-    
+    def computer_choice(self):
+        global empty_row
+        global choice
+        choice = randrange(self.col_count)
+        for row in range(self.row_count):
+            if self.board[row][choice] == 0:
+                empty_row = row
+                self.update_board(empty_row, choice, 2)
+                break
+            elif row == self.row_count-1:
+                choice = randrange(self.col_count)
+                break
+
 
 
 gameBoard = Board()
@@ -79,6 +93,7 @@ while playing:
     while not win:
         gameBoard.display_upsidedown_board()
         gameBoard.valid_drop()
+        gameBoard.computer_choice()
         if gameBoard.check_win():
             gameBoard.display_upsidedown_board()
             win = True
