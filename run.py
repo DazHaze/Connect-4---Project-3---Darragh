@@ -35,6 +35,7 @@ class Board:
                 if self.board[row][user_choice] == 0:
                     empty_row = row
                     self.dropping_piece(empty_row, user_choice, 1)
+                    print(empty_row, user_choice)
                     break
 
                 elif row == self.row_count-1:
@@ -51,7 +52,7 @@ class Board:
                 self.display_upsidedown_board()
                 self.update_board(int_rows-x, col, 0)
                 x += 1
-                sleep(0.4)
+                sleep(0.1)
             else:
                 self.update_board(row + 1, col, 0)
                 self.update_board(row, col, piece)
@@ -70,19 +71,21 @@ class Board:
                     b = self.board
                     r = row
                     c = col
-                    if c+3 <= 6 and r+3 <= 5:
+                    if r+3 <= 6:
+                        print(row, col)
                         # Check if there is 4 in a row.
                         if b[r][c] == b[r+1][c] == b[r+2][c] == b[r+3][c]:
                             return True
+                    elif c+3 <= 7:
                         # Check if there is 4 in a column.
-                        elif b[r][c] == b[r][c+1] == b[r][c+2] == b[r][c+3]:
+                        if b[r][c] == b[r][c+1] == b[r][c+2] == b[r][c+3]:
                             return True
-                        # Check if there is 4 in a upward right diagonal.
-                        elif b[r][c] == b[r+1][c+1] == b[r+2][c+2] == b[r+3][c+3]:
-                            return True
-                        # Check if there is 4 in a upwarward left diagonal.
-                        elif b[r][c] == b[r+1][c-1] == b[r+2][c-2] == b[r+3][c-3]:
-                            return True
+                    #Check if there is 4 in a upward right diagonal.
+                    elif b[r][c] == b[r+1][c+1] == b[r+2][c+2] == b[r+3][c+3]:
+                        return True
+                    # Check if there is 4 in a upwarward left diagonal.
+                    elif b[r][c] == b[r+1][c-1] == b[r+2][c-2] == b[r+3][c-3]:
+                        return True
 
     def computer_choice(self):
         """
@@ -133,26 +136,30 @@ def play_game():
                       ***\n***   		Goodluck! :)                   ***\n"
     PLAYER = u_p
     print(INITIAL_MESSAGE)
+
+
     while PLAYING:
-        print(gb.board)
         gb.display_upsidedown_board()
         if PLAYER == c_p:
             gb.computer_choice()
             PLAYER = u_p
         else:
             gb.valid_drop(1)
+            check_winner(gb, user_player)
             PLAYER = c_p
 
-        if gb.check_win():
-            user_player.score += 1
-            print(f'***      Player Score:{user_player.score}    ***')
-            WIN_MESSAGE = "*** 		  You win!!!		       ***\n***  \
-                   Would you like to play again? y/n      ***\n"
-            user_input = input(WIN_MESSAGE)
-            if user_input == "y":
-                gb.board = np.zeros((gb.row_count, gb.col_count))
-            else:
-                PLAYING = False
+    
+def check_winner(gb, user_player):
+    if gb.check_win():
+        user_player.score += 1
+        print(f'***      Player Score:{user_player.score}    ***')
+        WIN_MESSAGE = "*** 		  You win!!!		       ***\n***  \
+            Would you like to play again? y/n      ***\n"
+        user_input = input(WIN_MESSAGE)
+        if user_input == "y":
+            gb.board = np.zeros((gb.row_count, gb.col_count))
+        else:
+            PLAYING = False
 
 
 play_game()
