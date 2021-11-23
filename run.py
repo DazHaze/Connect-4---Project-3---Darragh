@@ -131,10 +131,10 @@ def play_game():
     print(c_p)
     gb = Board()
     global PLAYING 
-    PLAYING= True
-    INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ***\n***  \
-                     Try your best to beat the computer!    \
-                      ***\n***   		Goodluck! :)                   ***\n"
+    PLAYING = True
+    INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ****** \
+  Try your best to beat the computer!   \
+   ******   		Goodluck! :)                   ***"
     PLAYER = u_p
     print(INITIAL_MESSAGE)
 

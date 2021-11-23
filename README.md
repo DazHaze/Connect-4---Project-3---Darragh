@@ -1,31 +1,37 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Farm People
 
-Welcome DazHaze,
+![farm people](/assets/images/readme/am-i-responsive.png)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Website - [Farm People](https://dazhaze.github.io/Farm-People/)
 
-## Reminders
+## What is this website for?
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+This website is being created for a couple based in County Wexford, Ireland. Situated on the South East coast is a small farm with the brand "Farm People" stamped on each bag or egg box produced by this little farm. Pigs and chickens run a-muck, closely followed by two playful dogs.
 
-## Creating the Heroku app
+## Goal of this website
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+There are many goals we aim to achieve with this website. The initial version of the website will be referred to as the 'base' website. This is what we will focus on right now.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+### *What will be achieved for the base?*
+* An explanation of what farm people is and who is running it.
+* What is on the farm?
+* Recipes that can be made with the produce.
+* A contact section for inqueries.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### *Features for the next stage.*
+* Functioning shop for online produce orders.
+* Bi-weekly newslater for available produce updates.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Testing
 
-Connect your GitHub repository and deploy as normal.
+> This section is for how the website is tested for usability on various devices.
 
-## Constraints
+## Deployment
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+> This section is for how the website is deployed.
 
------
-Happy coding!
+___
+
+## Credits
+
+* Darragh Hayes, developer.
