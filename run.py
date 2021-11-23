@@ -132,9 +132,9 @@ def play_game():
     gb = Board()
     global PLAYING 
     PLAYING = True
-    INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ****** \
+    INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ***\n*** \
   Try your best to beat the computer!   \
-   ******   		Goodluck! :)                   ***"
+   ***\n***   		Goodluck! :)                   ***"
     PLAYER = u_p
     print(INITIAL_MESSAGE)
 
