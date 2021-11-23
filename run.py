@@ -31,17 +31,22 @@ class Board:
     def valid_drop(self, piece):
         # global empty_row
         if piece == 1:
-            user_choice = int(input("Please choose a column (0-6): \n"))
-            for row in range(self.row_count):
-                if self.board[row][user_choice] == 0:
-                    empty_row = row
-                    self.dropping_piece(empty_row, user_choice, 1)
-                    break
+            user_choice = str(input("Please choose a column (0-6): \n"))
+            if (user_choice.isnumeric() and int(user_choice) < 7 and int(user_choice) > 0):
+                user_choice = int(user_choice)
+                for row in range(self.row_count):
+                    if self.board[row][user_choice] == 0:
+                        empty_row = row
+                        self.dropping_piece(empty_row, user_choice, 1)
+                        break
 
-                elif row == self.row_count-1:
-                    print("Column is full, please choose another.\n")
-                    self.valid_drop(1)
-                    break
+                    elif row == self.row_count-1:
+                        print("Column is full, please choose another.\n")
+                        self.valid_drop(1)
+                        break
+            else:
+                self.valid_drop(1)
+                 
 
     def dropping_piece(self, row, col, piece):
         int_rows = self.row_count-1
