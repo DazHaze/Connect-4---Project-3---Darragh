@@ -167,8 +167,8 @@ def play_game():
 def check_winner(gb, user_player, computer_player):
     if gb.check_win() == "user":
         user_player.score += 1
-        WIN_MESSAGE = "***      Player Score:{user_player.score} \
-    Computer Score:{computer_player.score}   ***\n\
+        WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
+            Computer Score:{computer_player.score}   \n\
 *** 		  			You win!!!		                       ***\n\
 ***			    Would you like to play again? y/n\
                           ***\n"
@@ -179,9 +179,9 @@ def check_winner(gb, user_player, computer_player):
             PLAYING = False
     elif gb.check_win() == "computer":
         computer_player.score += 1
-        WIN_MESSAGE = "***      Player Score:{user_player.score} \
-    Computer Score:{computer_player.score}   ***\n\
-*** 		  			You win!!!		                       ***\n\
+        WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
+            Computer Score:{computer_player.score}   \n\
+*** 		         Computer Wins!!!                          ***\n\
 ***			    Would you like to play again? y/n\
                           ***\n"
         user_input = input(WIN_MESSAGE)
