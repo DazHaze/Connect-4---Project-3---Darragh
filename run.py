@@ -80,7 +80,7 @@ class Board:
                         # Check if there is 4 in a column.
                         if b[r][c] == b[r][c+1] == b[r][c+2] == b[r][c+3]:
                             return True
-                    #Check if there is 4 in a upward right diagonal.
+                    # Check if there is 4 in a upward right diagonal.
                     elif b[r][c] == b[r+1][c+1] == b[r+2][c+2] == b[r+3][c+3]:
                         return True
                     # Check if there is 4 in a upwarward left diagonal.
@@ -130,7 +130,8 @@ def play_game():
     c_p = user_player.return_player_type()
     print(c_p)
     gb = Board()
-    PLAYING = True
+    global PLAYING 
+    PLAYING= True
     INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ***\n***  \
                      Try your best to beat the computer!    \
                       ***\n***   		Goodluck! :)                   ***\n"
