@@ -34,7 +34,7 @@ I have manually tested this project by doing the following:
 
 ### *Win conditions*
 * When creating the 'check_win' function I was getting out of bounds in array errors for some win conditions. I noticed this would be because to check
-if the user has won the conditions had row + 1, row + 2 and row + 3 ( with the same for columns). If the board position was ( 5, 3) then row +3 would cause the final value of 
+if the user has won the conditions had row + 1, row + 2 and row + 3 ( with the same for columns). If the board position was `(5, 3)` then row +3 would cause the final value of 
 8 to be greater than the actual number of rows available to check. My first idea for a fix was just to add:
 ```python
     if (row + 3) <= 6:
@@ -50,11 +50,11 @@ if the user has won the conditions had row + 1, row + 2 and row + 3 ( with the s
                         b[r][c+3] == piece):
                     return True
 ```
-* I finally settled for this approach after *many different attempts at this problem. This method has 4 code blocks in the check win function. One for vertical win, one for horixontal win and two for the positive and negative diagonals.
+* I finally settled for this approach after **many** different attempts at this problem. This method has 4 code blocks in the check win function. One for vertical win, one for horixontal win and two for the positive and negative diagonals.
 
 ### *Working backwards*
-* At the beginning of this project I found it difficult to work with the board as the first piece would be at say '(0,6)' instead of '(0,0)'. 
-This was solved by working with the board in the postion where '(0,0)' is the bottom and then flipping it to display to the user at the end.
+* At the beginning of this project I found it difficult to work with the board as the first piece would be at say `(0,6)` instead of `(0,0)`. 
+This was solved by working with the board in the postion where `(0,0)` is the bottom and then flipping it to display to the user at the end.
 ```python
     def display_upsidedown_board(self):
             """
