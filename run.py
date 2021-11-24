@@ -16,8 +16,6 @@ class Board:
         self.row_count = 6
         self.col_count = 7
         self.board = np.zeros((self.row_count, self.col_count))
-        self.user_row = []
-        self.user_column = []
         self.game_playing = True
 
     def display_upsidedown_board(self):
