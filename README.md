@@ -1,37 +1,16 @@
-# Farm People
+# Python Connect4
 
-![farm people](/assets/images/readme/am-i-responsive.png)
+Python Connect4 is a python terminal implementation of the classic connect 4 game.
+It runs in the [Code Institue](https://codeinstitute.net/all-access-coding-challenge/?utm_term=code%20institute&utm_campaign=CI+-+IRL+-+Search+-+Brand&utm_source=adwords&utm_medium=ppc&hsa_acc=8983321581&hsa_cam=14304747355&hsa_grp=128775288209&hsa_ad=539453915484&hsa_src=g&hsa_tgt=kwd-319867646331&hsa_kw=code%20institute&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAiAv_KMBhAzEiwAs-rX1PXOCAky8yjljHzgvSnccpkyUOvNLVGMuzG11t86weTdFdPiTfNHHhoCFuwQAvD_BwE) mock terminal on [Heroku](https://id.heroku.com/login).
 
-Website - [Farm People](https://dazhaze.github.io/Farm-People/)
+The user can play a connect four game against the computer.
 
-## What is this website for?
+[Try it out here (Link to external site)](https://connect4-python.herokuapp.com/)
 
-This website is being created for a couple based in County Wexford, Ireland. Situated on the South East coast is a small farm with the brand "Farm People" stamped on each bag or egg box produced by this little farm. Pigs and chickens run a-muck, closely followed by two playful dogs.
+![Am-I-Responsive-Connect4](images/connect-4-air.png)
 
-## Goal of this website
+## How to play
 
-There are many goals we aim to achieve with this website. The initial version of the website will be referred to as the 'base' website. This is what we will focus on right now.
+Python Connect4 is based on the classic tabletop game connect 4.
 
-### *What will be achieved for the base?*
-* An explanation of what farm people is and who is running it.
-* What is on the farm?
-* Recipes that can be made with the produce.
-* A contact section for inqueries.
-
-### *Features for the next stage.*
-* Functioning shop for online produce orders.
-* Bi-weekly newslater for available produce updates.
-
-## Testing
-
-> This section is for how the website is tested for usability on various devices.
-
-## Deployment
-
-> This section is for how the website is deployed.
-
-___
-
-## Credits
-
-* Darragh Hayes, developer.
+* Connect Four (also known as Four Up, Plot Four, Find Four, Captain's Mistress, Four in a Row, Drop Four, and Gravitrips in the Soviet Union) is a two-player connection board game, in   which the players choose a color and then take turns dropping colored discs into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs. Connect Four is a solved game. The first player can always win by playing the right moves. The game was first sold under the Connect Four trademark[3] by Milton Bradley in February 1974. [Wikipedia, 2021](https://en.wikipedia.org/wiki/Connect_Four)

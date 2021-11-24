@@ -1,7 +1,7 @@
 """
-Your code goes here.
-You can delete these comments, but do not change the name of this file
-Write your code to expect a terminal of 80 characters wide and 24 rows high
+This app creates a connect four game that runs in the terminal.
+choose a number from 0 to 6 and click enter to play.
+Enjoy!
 """
 from time import sleep
 from random import randrange
@@ -20,19 +20,34 @@ class Board:
         self.user_column = []
 
     def display_upsidedown_board(self):
+        """
+        Prints the upside down and flipped board array so pieces at 0,0
+        are at the bottom.
+        """
         print(f'\n{np.flip(self.board, 0)}\n')
 
     def display_board(self):
+        """
+        Prints the board array.
+        """
         print(self.board)
 
     def update_board(self, row, col, piece):
+        """
+        Updates the board array with new value.
+        """
         self.board[row][col] = piece
 
     def valid_drop(self, piece):
-        # global empty_row
+        """
+        Checks which row is free in column.
+        Asks for another column if not free.
+        """
         if piece == 1:
             user_choice = str(input("Please choose a column (0-6): \n"))
-            if (user_choice.isnumeric() and int(user_choice) < 7 and int(user_choice) > 0):
+            if (user_choice.isnumeric() and
+                int(user_choice) < 7 and
+                    int(user_choice) >= 0):
                 user_choice = int(user_choice)
                 for row in range(self.row_count):
                     if self.board[row][user_choice] == 0:
@@ -46,9 +61,11 @@ class Board:
                         break
             else:
                 self.valid_drop(1)
-                 
 
     def dropping_piece(self, row, col, piece):
+        """
+        Prints dropping piece animation on game board.
+        """
         int_rows = self.row_count-1
         if row != int_rows:
             amount = int_rows - row
@@ -116,7 +133,17 @@ class Board:
         Calls dropping_piece to then place the computers choice
         """
         print("Computer now thinking...")
-        sleep(1.2)
+        sleep(0.3)
+        print(".")
+        sleep(0.3)
+        print("...")
+        sleep(0.3)
+        print(".....")
+        sleep(0.3)
+        print("......")
+        sleep(0.3)
+        print("........")
+        sleep(0.3)
         comp_choice = randrange(self.col_count)
         for row in range(self.row_count):
             if self.board[row][comp_choice] == 0:
@@ -142,16 +169,21 @@ class Player:
         elif self.player_type == "computer":
             return 2
         else:
-            return "f'{self.player_type} is not a recognised player type." 
+            return "f'{self.player_type} is not a recognised player type."
 
 
 def play_game():
+    """
+    Creates the computer and user player.
+    Creates the game board.
+    Starts while loop with value PLAYING.
+    """
     computer_player = Player("computer")
     user_player = Player("user")
     u_p = computer_player.return_player_type()
     c_p = user_player.return_player_type()
     gb = Board()
-    global PLAYING 
+    global PLAYING
     PLAYING = True
     INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ***\n*** \
   Try your best to beat the computer!   \
@@ -168,15 +200,18 @@ def play_game():
             check_winner(gb, user_player, computer_player)
             PLAYER = c_p
 
-    
+
 def check_winner(gb, user_player, computer_player):
+    """
+    Checks if the winner is either the user or the computer.
+    Displays a win message and asks the user if they want to play again.
+    """
     if gb.check_win() == "user":
         user_player.score += 1
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
-*** 		  			You win!!!		                       ***\n\
-***			    Would you like to play again? y/n\
-                          ***\n"
+***     You win!!!\n\
+***     Would you like to play again? y/n\n"
         user_input = input(WIN_MESSAGE)
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))
@@ -186,14 +221,12 @@ def check_winner(gb, user_player, computer_player):
         computer_player.score += 1
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
-*** 		         Computer Wins!!!                          ***\n\
-***			    Would you like to play again? y/n\
-                          ***\n"
+***     Computer Wins!!!\n\
+***     Would you like to play again? y/n\n"
         user_input = input(WIN_MESSAGE)
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))
         else:
             PLAYING = False
-
 
 play_game()
