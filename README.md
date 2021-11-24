@@ -20,7 +20,7 @@ Python Connect4 is based on the classic tabletop game connect 4.
 ### **Existing Features**
 
 * Input validation error checking
-  * Player cannot enter a letter or symbol and must enter a number greater than 0 and less than the amount of columns.
+  * Player cannot enter a letter or symbol and must enter a number greater than `0` and less than the amount of columns.
 
 ![User Input Validation](images/user-input-validation.png)
 
