@@ -18,6 +18,7 @@ class Board:
         self.board = np.zeros((self.row_count, self.col_count))
         self.user_row = []
         self.user_column = []
+        self.game_playing = True
 
     def display_upsidedown_board(self):
         """
@@ -83,48 +84,46 @@ class Board:
             self.update_board(row, col, piece)
             self.display_upsidedown_board()
 
-    def check_win(self):
+    def check_win(self, piece):
         """
         Check if there is a win in columns, rows or diagonals.
         """
-        for row in range(self.row_count):
-            for col in range(self.col_count):
-                if self.board[row][col] == 1:
-                    b = self.board
-                    r = row
-                    c = col
-                    if r+3 <= 6:
-                        # Check if there is 4 in a row.
-                        if b[r][c] == b[r+1][c] == b[r+2][c] == b[r+3][c]:
-                            return "user"
-                    elif c+3 <= 7:
-                        # Check if there is 4 in a column.
-                        if b[r][c] == b[r][c+1] == b[r][c+2] == b[r][c+3]:
-                            return "user"
-                    # Check if there is 4 in a upward right diagonal.
-                    elif b[r][c] == b[r+1][c+1] == b[r+2][c+2] == b[r+3][c+3]:
-                        return "user"
-                    # Check if there is 4 in a upwarward left diagonal.
-                    elif b[r][c] == b[r+1][c-1] == b[r+2][c-2] == b[r+3][c-3]:
-                        return "user"
-                elif self.board[row][col] == 2:
-                    b = self.board
-                    r = row
-                    c = col
-                    if r+3 <= 6:
-                        # Check if there is 4 in a row.
-                        if b[r][c] == b[r+1][c] == b[r+2][c] == b[r+3][c]:
-                            return "computer"
-                    elif c+3 <= 7:
-                        # Check if there is 4 in a column.
-                        if b[r][c] == b[r][c+1] == b[r][c+2] == b[r][c+3]:
-                            return "computer"
-                    # Check if there is 4 in a upward right diagonal.
-                    elif b[r][c] == b[r+1][c+1] == b[r+2][c+2] == b[r+3][c+3]:
-                        return "computer"
-                    # Check if there is 4 in a upwarward left diagonal.
-                    elif b[r][c] == b[r+1][c-1] == b[r+2][c-2] == b[r+3][c-3]:
-                        return "computer"
+        b = self.board
+        # Check if there are 4 in a row
+        for c in range(self.col_count-3):
+            for r in range(self.row_count):
+                if (b[r][c] == piece and
+                    b[r][c+1] == piece and
+                        b[r][c+2] == piece and
+                        b[r][c+3] == piece):
+                    return True
+      
+        # Check if there are 4 in a column
+        for c in range(self.col_count):
+            for r in range(self.row_count-3):
+                if (b[r][c] == piece and
+                    b[r+1][c] == piece and
+                        b[r+2][c] == piece and
+                        b[r+3][c] == piece):
+                    return True
+
+        # Check if there are 4 in right diagonal
+        for c in range(self.col_count-3):
+            for r in range(self.row_count-3):
+                if(b[r][c] == piece and
+                    b[r+1][c+1] == piece and
+                        b[r+2][c+2] == piece and
+                        b[r+3][c+3] == piece):
+                    return True
+
+        # Check if there are 4 in left diagonal
+        for c in range(self.col_count-3):
+            for r in range(3, self.row_count):
+                if(b[r][c] == piece and
+                    b[r-1][c+1] == piece and
+                        b[r-2][c+2] == piece and
+                        b[r-3][c+3] == piece):
+                    return True
 
     def computer_choice(self):
         """
@@ -183,14 +182,12 @@ def play_game():
     u_p = computer_player.return_player_type()
     c_p = user_player.return_player_type()
     gb = Board()
-    global PLAYING
-    PLAYING = True
     INITIAL_MESSAGE = "***   Welcome to Connect4 written in python!   ***\n*** \
   Try your best to beat the computer!   \
    ***\n***   		Goodluck! :)                   ***"
     PLAYER = u_p
     print(INITIAL_MESSAGE)
-    while PLAYING:
+    while gb.game_playing:
         gb.display_upsidedown_board()
         if PLAYER == c_p:
             gb.computer_choice()
@@ -206,7 +203,7 @@ def check_winner(gb, user_player, computer_player):
     Checks if the winner is either the user or the computer.
     Displays a win message and asks the user if they want to play again.
     """
-    if gb.check_win() == "user":
+    if gb.check_win(1):
         user_player.score += 1
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
@@ -216,8 +213,8 @@ def check_winner(gb, user_player, computer_player):
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))
         else:
-            PLAYING = False
-    elif gb.check_win() == "computer":
+            gb.game_playing = False
+    elif gb.check_win(2):
         computer_player.score += 1
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
@@ -227,6 +224,6 @@ def check_winner(gb, user_player, computer_player):
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))
         else:
-            PLAYING = False
+            gb.game_playing = False
 
 play_game()
