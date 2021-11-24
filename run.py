@@ -206,7 +206,9 @@ def check_winner(gb, user_player, computer_player):
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
 ***     You win!!!\n\
-***     Would you like to play again? y/n\n"
+----------------------------------------------------\n\
+***     Would you like to play again? y/n\n\
+----------------------------------------------------\n"
         user_input = input(WIN_MESSAGE)
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))
@@ -217,7 +219,9 @@ def check_winner(gb, user_player, computer_player):
         WIN_MESSAGE = f"            Player Score:{user_player.score}\n \
             Computer Score:{computer_player.score}   \n\
 ***     Computer Wins!!!\n\
-***     Would you like to play again? y/n\n"
+----------------------------------------------------\n\
+***     Would you like to play again? y/n\n\
+----------------------------------------------------\n"
         user_input = input(WIN_MESSAGE)
         if user_input == "y":
             gb.board = np.zeros((gb.row_count, gb.col_count))

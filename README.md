@@ -15,6 +15,37 @@ Python Connect4 is based on the classic tabletop game connect 4.
 
 * Connect Four (also known as Four Up, Plot Four, Find Four, Captain's Mistress, Four in a Row, Drop Four, and Gravitrips in the Soviet Union) is a two-player connection board game, in   which the players choose a color and then take turns dropping colored discs into a seven-column, six-row vertically suspended grid. The pieces fall straight down, occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs. Connect Four is a solved game. The first player can always win by playing the right moves. The game was first sold under the Connect Four trademark[3] by Milton Bradley in February 1974. [Wikipedia, 2021](https://en.wikipedia.org/wiki/Connect_Four)
 
+## Features
+
+### **Existing Features**
+
+* Input validation error checking
+  * Player cannot enter a letter or symbol and must enter a number greater than 0 and less than the amount of columns.
+
+![User Input Validation](images/user-input-validation.png)
+
+* Play against computer
+* Accepts user input
+* Maintains scores
+
+![Mainaining Scores](images/maintaining-scores.png)
+
+* Computer thinking animation to give user the feeling of playing against a real player.
+
+![Computer Thinking Animation](images/computer-thinking-animation.png)
+
+* Piece dropping animation. Without this it is hard for the user to see that they are playing connect four.
+
+![Piece Dropping Animation](images/dropping-animation.png)
+
+### **Future Features**
+
+* Give the computer a more advanced decision making algorithm.
+* Create computer predictability so that the user can learn the computer move pattern.
+* Display board and pieces in a cleaner way.
+* Allow user to have choice of which piece they have.
+* Coin toss for who starts (Important because there are patterns where the user that is first always wins).
+
 ## Data Model
 
 I decided to use a board class as my model. The game creates an instance of the board when the game starts.
