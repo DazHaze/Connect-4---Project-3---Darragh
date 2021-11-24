@@ -95,7 +95,7 @@ class Board:
                         b[r][c+2] == piece and
                         b[r][c+3] == piece):
                     return True
-      
+
         # Check if there are 4 in a column
         for c in range(self.col_count):
             for r in range(self.row_count-3):
